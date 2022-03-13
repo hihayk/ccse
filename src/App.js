@@ -41,16 +41,12 @@ const Article = ({ question, num, difficultyFilter }) => {
     'pending'
   );
 
-  const getDisplay = () => {
-    if (difficulty === difficultyFilter || difficultyFilter === 'all') {
-      return 'block';
-    }
-
-    return 'none';
-  };
+  const isHidden =
+    difficulty === difficultyFilter || difficultyFilter === 'all';
+  const style = isHidden ? { display: 'none' } : null;
 
   return (
-    <article style={{ display: getDisplay() }}>
+    <article style={style}>
       <div style={{ margin: '8rem 0 1rem 0', fontSize: '1rem' }}>
         <div className="buttonsRow">
           {difficulties.map((item) => (
