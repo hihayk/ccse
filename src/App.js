@@ -41,22 +41,25 @@ const Article = ({ question, num, difficultyFilter }) => {
     'pending'
   );
 
-  const isHidden =
+  const isVisible =
     difficulty === difficultyFilter || difficultyFilter === 'all';
-  const style = isHidden ? { display: 'none' } : null;
+  const style = isVisible ? null : { display: 'none' };
 
   return (
     <article style={style}>
       <div style={{ margin: '8rem 0 1rem 0', fontSize: '1rem' }}>
         <div className="buttonsRow">
-          {difficulties.map((item) => (
-            <FilterButton
-              isActive={item === difficulty}
-              onClick={() => setDifficulty(item)}
-            >
-              {item}
-            </FilterButton>
-          ))}
+          {difficulties.map((item, index) => {
+            return (
+              <FilterButton
+                key={index}
+                isActive={item === difficulty}
+                onClick={() => setDifficulty(item)}
+              >
+                {item}
+              </FilterButton>
+            );
+          })}
         </div>
       </div>
 
